@@ -1,0 +1,17 @@
+<h1>Welcome to Customer Support Desk</h1>
+<h2>Please signup here:<a routerLink="/signup">Signup</a></h2>
+<form method="post" (ngSubmit)="signIn()">
+  <div class="box">
+    <h1>Dashboard</h1>
+
+    <input type="email" name="email" [(ngModel)]="user.email" class="email" />
+
+    <input type="password" name="email" [(ngModel)]="user.password" class="email" />
+
+    <div class="btn" style="cursor:pointer" type="submit" (click)="signIn()">Sign In</div> <!-- End Btn -->
+
+    <div id="btn2" style="cursor:pointer" routerLink="/signup">Sign Up</div> <!-- End Btn2 -->
+
+  </div> <!-- End Box -->
+
+</form>
