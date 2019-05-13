@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   emailregex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-  private rootUrl = `${environment.Host}/users`;
+  private rootUrl = `${environment.Host}/Users`;
   private authToken: string;
   private authTokenSource = new BehaviorSubject<string>(undefined);
   observeAuthToken = this.authTokenSource.asObservable();
@@ -64,8 +64,7 @@ export class AuthService {
     };
     this.http.post(url, authUser).subscribe(res => {
       const response: LooseObject = res;
-      console.log(response);
-      if (cb) { cb(null, response); this.router.navigate(['signin']) }
+      if (cb) {alert('signup succeeded'); cb(null, response);this.router.navigate(['signin']) }
     }, err => {
       alert('Cannot create user');
       if (cb) { cb(err, null); }
@@ -103,5 +102,23 @@ export class AuthService {
         }
       });
     }
+  }
+  signout(cb?: Function): void {
+    const url = `${this.rootUrl}/logout?access_token=${this.authToken}`;
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+
+    this.authToken = undefined;
+    this.authTokenSource.next(this.authToken);
+
+    this.userId = undefined;
+    this.userIdSource.next(this.userId);
+    this.http.post(url, {}).subscribe(res => {
+    }, err => {
+      if (cb) {
+        cb(err, null);
+      }
+    })
+
   }
 }
