@@ -7,14 +7,16 @@ import { SignupComponent } from './components/signup/signup.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { SignoutComponent } from './components/signout/signout.component'
+import { SignoutComponent } from './components/signout/signout.component';
+import { SuccesssigninComponent } from './components/successsignin/successsignin.component'
 @NgModule({
   declarations: [
     AppComponent,
     SignupComponent,
     SigninComponent,
     DashboardComponent,
-    SignoutComponent
+    SignoutComponent,
+    SuccesssigninComponent
   ],
   imports: [
     BrowserModule,
