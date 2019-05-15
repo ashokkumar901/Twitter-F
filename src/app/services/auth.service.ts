@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   emailregex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-  private rootUrl = `${environment.Host}/Users`;
+  private rootUrl = `${environment.Host}/authusers`;
   private authToken: string;
   private authTokenSource = new BehaviorSubject<string>(undefined);
   observeAuthToken = this.authTokenSource.asObservable();
@@ -64,7 +64,7 @@ export class AuthService {
     };
     this.http.post(url, authUser).subscribe(res => {
       const response: LooseObject = res;
-      if (cb) {alert('signup succeeded'); cb(null, response);this.router.navigate(['signin']) }
+      if (cb) { alert('signup succeeded'); cb(null, response); this.router.navigate(['signin']) }
     }, err => {
       alert('Cannot create user');
       if (cb) { cb(err, null); }
@@ -73,7 +73,7 @@ export class AuthService {
   }
 
   signIn(user: LooseObject, cb?: Function): void {
-    const url = `${environment.Host}/Users/login`;
+    const url = `${environment.Host}/authusers/login`;
     if (user) {
       const authUser = {
         email: user.email.trim(),
