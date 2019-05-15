@@ -93,12 +93,16 @@ export class AuthService {
           this.router.navigate(['dashboard']);
           alert('login succeeeded');
         } else {
+
         }
         if (cb) { cb(null, response); }
       }, err => {
+        alert('Invalid details');
         if (cb) {
           cb(err, null);
-          console.log('in errrorrrr')
+
+          console.log('in errrorrrr');
+
         }
       });
     }
