@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   emailregex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-  private rootUrl = `${environment.Host}/authusers`;
+  private rootUrl = `${environment.Host}/api/authusers`;
   private authToken: string;
   private authTokenSource = new BehaviorSubject<string>(undefined);
   observeAuthToken = this.authTokenSource.asObservable();
@@ -28,7 +28,7 @@ export class AuthService {
   }
   verifyToken(cb?: Function): void {
     if (this.userId && this.authToken) {
-      const url = `${this.rootUrl}/${this.userId}?access_token=${this.authToken}`;
+      const url = `${this.rootUrl}/api/${this.userId}?access_token=${this.authToken}`;
       this.http.get(url).subscribe(res => {
         const response: LooseObject = res;
         if (cb) { cb(null, response); }
@@ -73,7 +73,7 @@ export class AuthService {
   }
 
   signIn(user: LooseObject, cb?: Function): void {
-    const url = `${environment.Host}/authusers/login`;
+    const url = `${environment.Host}/api/authusers/login`;
     if (user) {
       const authUser = {
         email: user.email.trim(),
@@ -108,7 +108,7 @@ export class AuthService {
     }
   }
   signout(cb?: Function): void {
-    const url = `${this.rootUrl}/logout?access_token=${this.authToken}`;
+    const url = `${this.rootUrl}/api/logout?access_token=${this.authToken}`;
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
 
