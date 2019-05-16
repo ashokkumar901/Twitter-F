@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'signin', component: SigninComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'signout', component: SignoutComponent },
-  { path: 'auth/twitter/callback', component: SuccesssigninComponent, canActivate: [AuthGuard] }
+  { path: 'welcome', component: SuccesssigninComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
