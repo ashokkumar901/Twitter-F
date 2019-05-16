@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   emailregex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-  private rootUrl = `${environment.Host}/api/authusers`;
+  private rootUrl = `${environment.Host}/api/signinusers`;
   private authToken: string;
   private authTokenSource = new BehaviorSubject<string>(undefined);
   observeAuthToken = this.authTokenSource.asObservable();
@@ -73,7 +73,7 @@ export class AuthService {
   }
 
   signIn(user: LooseObject, cb?: Function): void {
-    const url = `${environment.Host}/api/authusers/login`;
+    const url = `${environment.Host}/api/signinusers/login`;
     if (user) {
       const authUser = {
         email: user.email.trim(),
